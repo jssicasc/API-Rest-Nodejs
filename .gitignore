@@ -1,0 +1,12 @@
+#Dependencies
+node_modules
+
+#Database - com o * já ignora TODOS os arqs dentro da pasta q terminam com .db
+db/*.db
+
+#Enviroment
+.env
+.env.test
+
+# Build
+build
