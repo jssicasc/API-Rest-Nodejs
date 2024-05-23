@@ -12,8 +12,9 @@ if (process.env.NODE_ENV === 'test') {
 // Além disso por padrão o campo definido em z é obrigatório, se fosse opcional poderia adicionar o .nullable() no fim do tipo ex[DATABASE_URL: z.string().nullable()]
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']), // usou o nome 'pg' pq foi assim q o KNEX NOMEOU o cliente do postgres
   DATABASE_URL: z.string(),
-  PORT: z.number().default(3333),
+  PORT: z.coerce.number().default(3333), // caso o valor convertido pelo coerce não retornar um número válido então a porta fica definida como 3333
 })
 
 // NOTE-TBM-QUE apesar do arq .env Não Possuir a variável PORT a aplicação será executada sem erros pq foi definido um valor default p ela (como se ela ñ fosse obrigatória)
